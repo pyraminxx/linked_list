@@ -11,7 +11,7 @@ struct student *createStudent(char studentName[50], int studentAge);
 void copyStr(char *source, char *target);
 struct student * append(struct student * end, struct student * newStudptr);
 void printStudents(struct student *start);
-
+void freeStudents(struct student *start);
 
 
 int main(void) {
@@ -30,15 +30,7 @@ int main(void) {
     end = append(end, newStudptr);
 
     printStudents(start);
-    tmp = start->next;
-
-    free(start);
-
-    start = tmp;
-    tmp = start->next;
-
-    free(start);
-    free(tmp);
+    freeStudents(start);
 
     return 0;
 }
@@ -72,5 +64,15 @@ void printStudents(struct student *start){
     while(ptr!=NULL){
         printf("%s is %d years old.\n",ptr->name,ptr->age);
         ptr = ptr->next;
+    }
+}
+//free the space
+void freeStudents(struct student *start){
+    struct student * ptr = start;
+    struct student * tmp;
+    while(ptr!=NULL){
+        tmp = ptr->next;
+        free(ptr);
+        ptr = tmp;
     }
 }
