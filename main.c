@@ -17,7 +17,7 @@ void freeStudents(struct student *start);
 int main(void) {
     struct student *start, *newStudptr, *end, *tmp;
     int ageP, ageR, ageM;
-
+    printf("Please enter the ages\n");
     scanf("%d %d %d", &ageP, &ageR, &ageM);
 
     start = createStudent("Amy", ageP);
